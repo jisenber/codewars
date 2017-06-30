@@ -9,8 +9,25 @@ take the next sequence of 5 numbers, compare it, if it is less, move on, if it i
 return the property of the object
 */
 function solution(digits){
-  let digitString = digits.toString()
-  console.log(digitString[0-4])
+  if(!digits) return 0;
+  if (digits.length < 0) return digits;
+  let highest;
+  let compareMe;
+  let digitString = digits.toString();
+  let digitArray = digitString.split('');
+  let firstSeries = digitArray.slice(0,5);
+  highest = firstSeries.join('');
+  while (digitArray.length > 5) {
+    digitArray.shift();
+    let nextSeries = digitArray.slice(0,5);
+    compareMe = nextSeries.join('');
+    if(highest >= compareMe) {
+      continue;
+    } else {
+      highest = compareMe;
+    }
+  }
+  return highest;
 }
 
-solution(154836394)
+console.log(solution(154836394));
